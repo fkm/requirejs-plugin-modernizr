@@ -1,6 +1,6 @@
 {
   "name": "requirejs-plugin-modernizr",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A RequireJS loader to load specific Modernizr modules.",
   "keywords": [
     "amd",
