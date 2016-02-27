@@ -1,0 +1,27 @@
+{
+  "name": "requirejs-plugin-modernizr",
+  "description": "A RequireJS loader to load specific Modernizr modules.",
+  "main": "main.js",
+  "authors": [
+    "Florian Maeder <florian.maeder@goldbachinteractive.ch>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "amd",
+    "requirejs",
+    "plugin",
+    "loader",
+    "modernizr"
+  ],
+  "homepage": "https://github.com/fkm/requirejs-plugin-modernizr",
+  "moduleType": [
+    "amd"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
