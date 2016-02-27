@@ -1,4 +1,4 @@
-define(['module'], function (module) {
+define(['module', 'domready!'], function (module, doc) {
 	'use strict';
 
 	var config = module.config();
@@ -6,20 +6,39 @@ define(['module'], function (module) {
 	var packageName = config.modernizrPackageName || 'modernizr';
 
 	function loadModules(moduleNames, req, onload, config) {
+		var methodList = [], testList = [], requireList = [];
+
 		var moduleList = moduleNames.split(',').map(function (moduleName) {
 			return moduleName.trim();
 		});
 
-		var pathList = moduleList.map(function (moduleName) {
-			if (moduleName.length > 0 && moduleMap.hasOwnProperty(moduleName)) {
-				return packageName + '/' + moduleMap[moduleName];
+		moduleList.forEach(function (moduleName) {
+			if (moduleName.length > 0) {
+				if (methodMap.hasOwnProperty(moduleName)) {
+					methodList.push(packageName + '/' + methodMap[moduleName]);
+				} else if (testMap.hasOwnProperty(moduleName)) {
+					testList.push(packageName + '/' + testMap[moduleName]);
+				}
 			}
 		});
 
-		if (pathList.length > 0) {
-			pathList.unshift(packageName + '/' + moduleMap['Modernizr']);
+		if (methodList.length > 0 || testList.length > 0) {
+			requireList.push(packageName + '/' + methodMap['Modernizr']);
 
-			req(pathList, function (Modernizr) {
+			if (testList.length > 0) {
+				requireList.push(packageName + '/' + methodMap['tests']);
+				requireList.push(packageName + '/' + methodMap['addTest']);
+			}
+
+			requireList = requireList.concat(methodList).concat(testList);
+
+			req(requireList, function (Modernizr, tests, addTest) {
+				if (testList.length > 0) {
+					tests.forEach(function (test) {
+						addTest(test.name, test.fn);
+					});
+				}
+
 				onload(Modernizr);
 			}, onload.error);
 		} else {
@@ -27,8 +46,8 @@ define(['module'], function (module) {
 		}
 	}
 
-	var moduleMap = {
-		// Methods
+	// Modernizr Methods
+	var methodMap = {
 		Modernizr: 'src/Modernizr',
 		ModernizrProto: 'src/ModernizrProto',
 		addTest: 'src/addTest',
@@ -75,9 +94,19 @@ define(['module'], function (module) {
 		testXhrType: 'src/testXhrType',
 		tests: 'src/tests',
 		toStringFn: 'src/toStringFn',
+	};
 
-		// Tests
+	// Modernizr Tests
+	// This list is incomplete. Before a test can be added here, its module dependencies have to be prefixed.
+	var testMap = {
 		classlist: 'feature-detects/dom/classlist',
+		createelementattrs: 'feature-detects/dom/createElement-attrs',
+		'createelement-attrs': 'feature-detects/dom/createElement-attrs',
+		dataset: 'feature-detects/dom/dataset',
+		documentfragment: 'feature-detects/dom/documentfragment',
+		hidden: 'feature-detects/dom/hidden',
+		microdata: 'feature-detects/dom/microdata',
+		mutationobserver: 'feature-detects/dom/mutationObserver',
 	};
 
 	return {
