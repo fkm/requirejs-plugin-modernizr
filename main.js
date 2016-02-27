@@ -6,10 +6,17 @@ define(['module', 'domready!'], function (module, doc) {
 	var packageName = config.modernizrPackageName || 'modernizr';
 
 	function loadModules(moduleNames, req, onload, config) {
-		var methodList = [], testList = [], requireList = [];
+		var methodList = [], testList = [], requireList = [], cssList = [];
 
 		var moduleList = moduleNames.split(',').map(function (moduleName) {
-			return moduleName.trim();
+			moduleName = moduleName.trim();
+
+			if (moduleName.substring(moduleName.length - 1) === '+') {
+				moduleName = moduleName.substring(0, moduleName.length - 1);
+				cssList.push(moduleName);
+			}
+
+			return moduleName;
 		});
 
 		moduleList.forEach(function (moduleName) {
@@ -35,7 +42,11 @@ define(['module', 'domready!'], function (module, doc) {
 			req(requireList, function (Modernizr, tests, addTest) {
 				if (testList.length > 0) {
 					tests.forEach(function (test) {
-						addTest(test.name, test.fn);
+						if (cssList.indexOf(test.name) !== -1) {
+							addTest(test.name, test.fn);
+						} else {
+							Modernizr[test.name] = typeof test.fn === 'function' ? test.fn() : test.fn;
+						}
 					});
 				}
 

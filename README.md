@@ -28,14 +28,17 @@ requirejs.config({
 
 ## Usage
 ```js
-require(['mdzr!prefixed,prefixedCSS,dataset'], function (Modernizr) {
+require(['mdzr!prefixed,prefixedCSS,dataset,createelementattrs+'], function (Modernizr) {
 	console.log(
 		Modernizr.prefixed('requestAnimationFrame'),
 		Modernizr.prefixedCSS('transition'),
-		Modernizr.dataset
+		Modernizr.dataset,
+		Modernizr.createelementattrs
 	);
 });
 ```
+
+The plus (+) at the end of a test name will add the corresponding class to the DOM.
 
 ## Optimization
 There is currently no special routine for the RequireJS optimizer.
