@@ -14,15 +14,8 @@ I have created a [fork](https://github.com/fkm/Modernizr) until I figure out a w
 requirejs.config({
 	paths: {
 		mdzr: 'path/to/bower_components/requirejs-plugin-modernizr/main',
+		modernizr: 'path/to/bower_components/modernizr',
 	},
-
-	packages: [
-		{
-			name: 'modernizr',
-			location : 'path/to/bower_components/modernizr',
-			main: 'src/Modernizr'
-		},
-	],
 });
 ```
 
