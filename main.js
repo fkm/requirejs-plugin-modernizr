@@ -1,7 +1,7 @@
 define(['module', 'domready!'], function (module) {
 	'use strict';
 
-	var config = module.config();
+	var config = (module.config && module.config()) || {};
 
 	var package_name = config.modernizrPackageName || 'modernizr';
 
