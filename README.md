@@ -8,8 +8,19 @@ The method and feature-detect maps are based on Modernizr 3.3.1. **The Modernizr
 
 I have created a [fork](https://github.com/fkm/Modernizr) until I figure out a way to co-exist with the Modernizr builder.
 
-## Configuration
+## Installation
+Add the following entries to your `bower.json` file.
 
+```js
+{
+	"dependencies": {
+		"requirejs-plugin-modernizr": "*",
+		"modernizr": "https://github.com/fkm/Modernizr.git",
+    }
+}
+```
+
+## Configuration
 ```js
 requirejs.config({
 	paths: {
