@@ -4,7 +4,7 @@ A RequireJS loader to load specific Modernizr modules.
 This plugin is based on / inspired by [lodash-requirejs-loader-plugin](https://github.com/mokkabonna/lodash-requirejs-loader-plugin).
 
 ## Dependencies
-The method and feature-detect maps are based on **Modernizr 3.3.1**. The Modernizr files need to be modified for this loader to work! All module dependencies need to be prefixed (relative) which breaks Modernizr's builder.
+The method and feature-detect maps are based on Modernizr 3.3.1. **The Modernizr files need to be modified for this loader to work!** All module dependencies need to be prefixed (relative) which breaks Modernizr's builder.
 
 I have created a [fork](https://github.com/fkm/Modernizr) until I figure out a way to co-exist with the Modernizr builder.
 
