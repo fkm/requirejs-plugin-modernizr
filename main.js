@@ -34,10 +34,10 @@ define(['module', 'domready!'], function (module) {
 
 			if (test_list.length > 0) {
 				require_list.push(package_name + '/' + method_map['tests']);
-			}
 
-			if (css_list.length > 0) {
-				require_list.push(package_name + '/' + method_map['addTest']);
+				if (css_list.length > 0) {
+					require_list.push(package_name + '/' + method_map['addTest']);
+				}
 			}
 
 			require_list = require_list.concat(method_list).concat(test_list);
