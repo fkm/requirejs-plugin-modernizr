@@ -1,4 +1,4 @@
-define(['module', 'domready!'], function (module) {
+define(['module'], function (module) {
 	'use strict';
 
 	var config = (module.config && module.config()) || {};
@@ -60,7 +60,7 @@ define(['module', 'domready!'], function (module) {
 		}
 	}
 
-	// Modernizr Methods
+	// Modernizr Methods Map
 	var method_map = {
 		Modernizr: 'src/Modernizr',
 		ModernizrProto: 'src/ModernizrProto',
@@ -111,8 +111,7 @@ define(['module', 'domready!'], function (module) {
 		toStringFn: 'src/toStringFn',
 	};
 
-	// Modernizr Tests
-	// This list is incomplete. Before a test can be added here, its module dependencies have to be prefixed.
+	// Modernizr Tests Map
 	var test_map = {
 		// DOM
 		classlist: 'feature-detects/dom/classlist',
